@@ -20,7 +20,7 @@ trait AppendBar {
 // TODO: Implement trait `AppendBar` for a vector of strings.
 impl AppendBar for Vec<String> {
   fn append_bar(self) -> Self {
-    [self, vec!["Bar".into()]].concat()
+    [self, vec![String::from("Bar")]].concat()
   }
 }
 

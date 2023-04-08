@@ -21,7 +21,7 @@ fn main() {
     let handle = thread::spawn(move || {
       thread::sleep(Duration::from_millis(250));
       // TODO: You must take an action before you update a shared value
-      (*status_shared.lock().unwrap()).jobs_completed += 1;
+      status_shared.lock().unwrap().jobs_completed += 1;
     });
     handles.push(handle);
   }
@@ -29,9 +29,6 @@ fn main() {
     handle.join().unwrap();
     // TODO: Print the value of the JobStatus.jobs_completed. Did you notice anything
     // interesting in the output? Do you have to 'join' on all the handles?
-    println!(
-      "jobs completed {}",
-      (*status.lock().unwrap()).jobs_completed
-    );
+    println!("jobs completed {}", status.lock().unwrap().jobs_completed);
   }
 }

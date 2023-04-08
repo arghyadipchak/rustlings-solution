@@ -6,7 +6,7 @@
 // - Modules
 // - Enums
 
-// Let's build a little machine in form of a function.
+// Let's build a little machine in the form of a function.
 // As input, we're going to give a list of strings and commands. These commands
 // determine what action is going to be applied to the string. It can either be:
 // - Uppercase the string
@@ -48,8 +48,8 @@ mod my_module {
 #[cfg(test)]
 mod tests {
   // TODO: What do we need to import to have `transformer` in scope?
+  use super::my_module::transformer;
   use super::Command;
-  use my_module::transformer;
 
   #[test]
   fn it_works() {

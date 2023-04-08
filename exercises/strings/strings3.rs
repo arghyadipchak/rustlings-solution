@@ -5,7 +5,7 @@
 
 fn trim_me(input: &str) -> String {
   // TODO: Remove whitespace from both ends of a string!
-  input.trim().into()
+  input.trim().to_string()
 }
 
 fn compose_me(input: &str) -> String {
@@ -24,9 +24,9 @@ mod tests {
 
   #[test]
   fn trim_a_string() {
-    assert_eq!(trim_me("Hello!   "), "Hello!");
-    assert_eq!(trim_me(" What's up!"), "What's up!");
-    assert_eq!(trim_me("  Hola! "), "Hola!");
+    assert_eq!(trim_me("Hello!     "), "Hello!");
+    assert_eq!(trim_me("  What's up!"), "What's up!");
+    assert_eq!(trim_me("   Hola!  "), "Hola!");
   }
 
   #[test]

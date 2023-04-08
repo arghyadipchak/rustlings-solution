@@ -5,8 +5,6 @@
 
 #[cfg(test)]
 mod tests {
-  use super::*;
-
   #[test]
   fn simple_option() {
     let target = "rustlings";
@@ -28,8 +26,8 @@ mod tests {
 
     // TODO: make this a while let statement - remember that vector.pop also adds another layer of Option<T>
     // You can stack `Option<T>`'s into while let and if let
-    while let Some(opt) = optional_integers.pop() {
-      if let Some(integer) = opt {
+    while let Some(integer) = optional_integers.pop() {
+      if let Some(integer) = integer {
         assert_eq!(integer, range);
         range -= 1;
       }

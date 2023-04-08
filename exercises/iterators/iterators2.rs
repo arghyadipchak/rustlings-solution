@@ -21,7 +21,7 @@ pub fn capitalize_first(input: &str) -> String {
 // Return a vector of strings.
 // ["hello", "world"] -> ["Hello", "World"]
 pub fn capitalize_words_vector(words: &[&str]) -> Vec<String> {
-  words.iter().map(|s| capitalize_first(s)).collect()
+  words.iter().map(|w| capitalize_first(w)).collect()
 }
 
 // Step 3.

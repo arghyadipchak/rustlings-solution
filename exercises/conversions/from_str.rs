@@ -46,22 +46,50 @@ enum ParsePersonError {
 impl FromStr for Person {
   type Err = ParsePersonError;
   fn from_str(s: &str) -> Result<Person, Self::Err> {
-    let parts = s.split(',').collect::<Vec<&str>>();
-    if (s.len() == 0) {
-      Err(ParsePersonError::Empty)
-    } else if (parts.len() != 2) {
-      Err(ParsePersonError::BadLen)
-    } else if (parts[0].is_empty()) {
-      return Err(ParsePersonError::NoName);
-    } else {
-      match parts[1].parse::<usize>() {
-        Err(err) => Err(ParsePersonError::ParseInt(err)),
-        Ok(age) => Ok(Person {
-          name: parts[0].to_string(),
-          age,
-        }),
-      }
+    if s.is_empty() {
+      return Err(Self::Err::Empty);
     }
+    let parts = s.split(',').collect::<Vec<&str>>();
+    if parts.len() != 2 {
+      return Err(Self::Err::BadLen);
+    }
+    if parts[0].is_empty() {
+      return Err(Self::Err::NoName);
+    }
+    match parts[1].parse::<usize>() {
+      Err(e) => Err(Self::Err::ParseInt(e)),
+      Ok(age) => Ok(Person {
+        name: parts[0].to_string(),
+        age,
+      }),
+    }
+
+    // let mut sp = s.split(',');
+    // if let Some(name) = sp.next() {
+    //   if !name.is_empty() {
+    //     if let Some(age) = sp.next() {
+    //       match age.parse::<usize>() {
+    //         Ok(age) => {
+    //           if let Some(_) = sp.next() {
+    //             Err(Self::Err::BadLen)
+    //           } else {
+    //             Ok(Person {
+    //               name: name.to_string(),
+    //               age,
+    //             })
+    //           }
+    //         }
+    //         Err(e) => Err(Self::Err::ParseInt(e)),
+    //       }
+    //     } else {
+    //       Err(Self::Err::BadLen)
+    //     }
+    //   } else {
+    //     Err(Self::Err::NoName)
+    //   }
+    // } else {
+    //   Err(Self::Err::Empty)
+    // }
   }
 }
 
